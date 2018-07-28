@@ -5,7 +5,7 @@ import {HttpClientModule} from '@angular/common/http';
 import { AppComponent } from "./app.component";
 import { HomeComponent } from "./home/home.component";
 import { LoginComponent } from "./login/login.component";
-import { ReactiveFormsModule, FormBuilder } from "@angular/forms";
+import { ReactiveFormsModule, FormBuilder, FormsModule } from "@angular/forms";
 import { EntriesComponent } from "./entries/entries.component";
 import { HttpClient } from "../../node_modules/@angular/common/http";
 import { EditMovieComponent } from './edit-movie/edit-movie.component';
@@ -19,6 +19,7 @@ import { AuthGuard } from "./auth.guard";
     BrowserModule,
     ReactiveFormsModule,
     HttpClientModule,
+    FormsModule ,
     RouterModule.forRoot([
       {
         path: "home",

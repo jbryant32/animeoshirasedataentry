@@ -79,9 +79,12 @@ input[type="submit"]
   display: inline-flex;
 }
 .form-cat-banner h4{
-  margin-right: 300px;
+  margin-right: 100px;
 }
 input[type="search"]{
   width: 300px;
+
+}
+.movie-tile{
 
 }
