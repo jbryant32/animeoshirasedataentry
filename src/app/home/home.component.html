@@ -1,0 +1,65 @@
+<app-navigation-bar></app-navigation-bar>
+<form [formGroup]="userInputForm" (submit)="submit()" class="form-group-lg">
+  <div class="form-banner">
+    <h3>New Movie Entry</h3>
+  </div>
+  <div class="form-cat-banner">
+    <h4>Movies</h4><input class="search-bar" type="search">
+  </div>
+  <div class="movie-container">
+    <div class="movie-selection-container">
+
+    </div>
+   </div>
+  <div class="main-form-container">
+    <div class="main-form-container-row">
+      <label class="form-check-label">Movie Title</label>
+      <input formControlName="movieTitle" class="form-control" type="text" placeholder="Im a placeholder">
+    </div>
+
+    <div class="main-form-container-row">
+      <label class="form-check-label">Movie Id</label>
+      <input formControlName="movieId" class="form-control" type="text" placeholder="Im a placeholder">
+    </div>
+
+    <div class="main-form-container-row">
+      <label class="form-check-label">Pick Showing Dates</label>
+      <input class="form-control" formControlName="showDates" type="text" placeholder="Im a placeholder">
+    </div>
+    <div class="form-group">
+      <div class="main-form-container-row">
+        <label class="form-check-label">Poster Path</label>
+
+        <input formControlName="posterPath" class="form-control" type="text" placeholder="Im a placeholder">
+      </div>
+      <div class="main-form-container-row">
+        <label class="form-check-label">Backdrop Path</label>
+        <input formControlName="backDropPath" class="form-control" type="text" placeholder="Im a placeholder">
+      </div>
+      <div class="main-form-container-row">
+        <label class="form-check-label">Offers English Dubbed</label>
+        <input formControlName="englishDubbed" class="form-control" type="checkbox" placeholder="Im a placeholder">
+
+      </div>
+      <div class="main-form-container-row">
+        <label class="form-check-label">Offers English Subbed</label>
+        <input formControlName="englishSubbed" class="form-control" type="checkbox" placeholder="Im a placeholder">
+      </div>
+
+      <div class="main-form-container-row">
+        <label class="form-check-label">YouTube Trailer Url</label>
+        <input class="form-control" formControlName="youTubeLink" type="text" placeholder="Im a placeholder">
+      </div>
+      <div class="main-form-container-row">
+        <label class="form-check-label">Theater Url</label>
+        <input class="form-control" formControlName="theaterUrl" type="text" placeholder="Im a placeholder">
+      </div>
+
+    </div>
+
+    <br>
+    <button class="btn btn-primary">Submit</button>
+
+  </div>
+
+</form>

@@ -1,0 +1,22 @@
+<app-navigation-bar></app-navigation-bar>
+<div class="main-container">
+  <div class="data-container">
+    <table class="table ">
+      <thead>
+        <tr>
+            <td>row</td>
+          <td>Id</td>
+          <td>Title</td>
+          <td>Release Date</td>
+        </tr>
+      </thead>
+
+      <tr *ngFor="let movie of movies$ | async; let i = index;">
+        <th scope="row">{{i}}</th>
+        <td>{{movie.id}}</td>
+        <td>{{movie.title}}</td>
+        <td><span><button>Refresh</button><button (click)='editMovie($event,i)'>Edit</button></span></td>
+      </tr>
+    </table>
+  </div>
+</div>
