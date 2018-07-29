@@ -39,7 +39,7 @@ export class HomeComponent implements OnInit {
   }
   submit() {}
   search() {
-    console.log( this.userInputForm.get("searchBar"));
+
     console.log("...searching");
     var url = `https://api.themoviedb.org/3/search/movie?api_key=88c90f084b54e6c2a73b7295abdf08c0&language=en-US&query=${
       this.userInputForm.get("searchBar").value

@@ -12,6 +12,7 @@ import { EditMovieComponent } from './edit-movie/edit-movie.component';
 import { NavigationBarComponent } from './navigation-bar/navigation-bar.component';
 import { CheckoutComponent } from './checkout/checkout.component';
 import { AuthGuard } from "./auth.guard";
+import { EditGuard } from "./edit.guard";
 
 @NgModule({
   declarations: [AppComponent, HomeComponent, LoginComponent, EntriesComponent, EditMovieComponent, NavigationBarComponent, CheckoutComponent],
@@ -42,7 +43,8 @@ import { AuthGuard } from "./auth.guard";
       {
         path:"edit",
         component:EditMovieComponent,
-        canActivate:[AuthGuard]
+        canActivate:[AuthGuard],
+        canDeactivate:[EditGuard]
 
       },
       {
@@ -53,7 +55,7 @@ import { AuthGuard } from "./auth.guard";
       }
     ])
   ],
-  providers: [FormBuilder,HttpClient,AuthGuard],
+  providers: [FormBuilder,HttpClient,AuthGuard,EditGuard],
   bootstrap: [AppComponent]
 })
 export class AppModule {}
