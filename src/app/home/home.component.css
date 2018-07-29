@@ -24,7 +24,6 @@ form{
 }
 .main-form-container-row{
   height: 40px;
-  margin-bottom: 20px;
   position: relative;
 }
 .main-form-container-row input:not([type="button"]){
@@ -87,4 +86,9 @@ input[type="search"]{
 }
 .movie-tile{
 
+}
+.invalid-message{
+  height: 40px;
+  width: 100%;
+  color: #e97272;
 }
