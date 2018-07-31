@@ -11,16 +11,15 @@ import { Router } from "../../../node_modules/@angular/router";
 export class EntriesComponent implements OnInit {
    movies$: Observable<Object>;
    private localMovies:Array<Object>=[];
-  typef = { id: 1234, title: "princess mononoke", data: "12/12/2012" }
+
   constructor(private httpClient:HttpClient,private router:Router) {}
 
   ngOnInit() {
 
-    let listMovies = [new Movie(),new Movie()]
+
     this.movies$ = this.httpClient.get('http://localhost:62203/api/v1/allMovies')
     .pipe(map((value)=> {this.localMovies.push(value); return value}))
-    console.log(this.localMovies);
-    console.log(this.movies$)
+
   }
   editMovie(e,i)
   {
@@ -29,8 +28,4 @@ export class EntriesComponent implements OnInit {
       this.router.navigate(["edit"]);
 
   }
-}
-class Movie{
-
-  movies = [{id:"1234",title:"Princess Mononoke"}]
 }

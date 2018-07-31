@@ -15,7 +15,9 @@ export class EditGuard implements CanDeactivate<EditMovieComponent> {
   canDeactivate(
     component: EditMovieComponent
   ): boolean | Observable<boolean> | Promise<boolean> {
-    if(!component.checkDirty())
+
+    try {
+         if(!component.checkDirty())
     {
       if(confirm("Unsaved Changes will be lost leave anyway?")){
         return of(true);
@@ -25,5 +27,10 @@ export class EditGuard implements CanDeactivate<EditMovieComponent> {
       }
     }
     return of(true);
+    } catch (error) {
+      console.log(error);
+      return of(true)
+    }
+
   }
 }

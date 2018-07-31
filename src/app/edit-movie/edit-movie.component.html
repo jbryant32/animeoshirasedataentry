@@ -28,11 +28,11 @@
       <input class="form-control" formControlName="trailer" type="text" placeholder="Im a placeholder">
     </div>
     <div class="form-group">
-      <div class="main-form-container-row">
+      <!-- <div class="main-form-container-row">
         <label class="form-check-label">Poster Path</label>
 
         <input formControlName="poster" class="form-control" type="text" placeholder="Im a placeholder">
-      </div>
+      </div> -->
       <div class="main-form-container-row">
         <label class="form-check-label">Showings</label>
         <input formControlName="showings" class="form-control" type="text" placeholder="Im a placeholder">
@@ -85,7 +85,9 @@
       </label>
     </div>
     <br>
-    <button class="btn btn-primary">Submit</button>
+    <button (click)="save()" class="btn btn-primary" type="button">Save</button>
+    <button (click)="review()" class="btn btn-primary" type="submit">Review</button>
+    <button (click)="addToCart()" class="btn btn-primary" type="button">Add to Update</button>
 
   </div>
 

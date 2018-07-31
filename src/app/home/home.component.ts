@@ -11,6 +11,7 @@ import { HttpClient } from "../../../node_modules/@angular/common/http";
 import { pipe } from "../../../node_modules/@angular/core/src/render3/pipe";
 import { map } from "../../../node_modules/rxjs/operators";
 import { Console } from "../../../node_modules/@angular/core/src/console";
+import { Router } from "../../../node_modules/@angular/router";
 
 @Component({
   selector: "app-home",
@@ -18,7 +19,7 @@ import { Console } from "../../../node_modules/@angular/core/src/console";
   styleUrls: ["./home.component.css"]
 })
 export class HomeComponent implements OnInit {
-  constructor(private fb: FormBuilder, private http: HttpClient) {}
+  constructor(private fb: FormBuilder, private http: HttpClient,private router:Router) {}
   userInputForm: FormGroup;
   movies$: Observable<any>;
   localMovies: Object[] = [];
@@ -37,12 +38,19 @@ export class HomeComponent implements OnInit {
       englishSubbed: ["", Validators.required],
       youTubeLink: ["", Validators.required],
       theaterUrl: ["", Validators.required],
+      ratingsGroup: this.fb.group({
+        ratings: ["G", Validators.required]
+      }),
       searchBar: ""
     });
     this.initCart();
   }
-  submit() {}
+  submit() {
+    this.router.navigate(["review"]);
+  }
   saveChanges() {
+    var date = new Date();;
+    var creationDate = new Date(`${date.getMonth()}/${date.getDay()}/${date.getFullYear()}`).toUTCString()
     var updated = {
       title: this.userInputForm.get("movieTitle").value || "NA",
       id: this.userInputForm.get("movieId").value || "NA",
@@ -55,28 +63,32 @@ export class HomeComponent implements OnInit {
       englishDubbed: this.userInputForm.get("englishDubbed").value || "NA",
       englishSubbed: this.userInputForm.get("englishSubbed").value || "NA",
       youTubeLink: this.userInputForm.get("youTubeLink").value || "NA",
-      theaterUrl: this.userInputForm.get("theaterUrl").value || "NA"
+      theaterUrl: this.userInputForm.get("theaterUrl").value || "NA",
+      ratings:this.userInputForm.get("ratingsGroup.ratings").value || "NA",
+      postedDate:creationDate,
+      purpose:"newEntry"
+
     };
     this.savedMovieData = updated;
+    console.log("movie saved");
     console.log(this.savedMovieData);
     localStorage.setItem("savedEdit", JSON.stringify(this.savedMovieData));
   }
   initCart()
   {
-    if (!localStorage.getItem("cartItems")) {
+    if (!localStorage.getItem("cartItemsNewEntry")) {
 
-      localStorage.setItem("cartItems", JSON.stringify(this.cart));
+      localStorage.setItem("cartItemsNewEntry", JSON.stringify(this.cart));
     } else {
 
-      this.cart = JSON.parse(localStorage.getItem("cartItems"));
+      this.cart = JSON.parse(localStorage.getItem("cartItemsNewEntry"));
 
     }
   }
   addToCart() {
     this.saveChanges();
     this.cart.push(this.savedMovieData);
-    localStorage.setItem("cartItems", JSON.stringify(this.cart));
-    var check = JSON.parse(localStorage.getItem("cartItems"));
+    localStorage.setItem("cartItemsNewEntry", JSON.stringify(this.cart));
 
   }
   search() {
@@ -96,6 +108,7 @@ export class HomeComponent implements OnInit {
       })
     );
   }
+  //Populate form with selected movie
   selectedMovie($event, movie) {
 
     this.userInputForm.patchValue({

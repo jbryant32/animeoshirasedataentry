@@ -1,0 +1,67 @@
+.container-banner {
+  padding-left: 25px;
+  padding-top: 10px;
+  width: 100%;
+  height: 50px;
+  background-color: dodgerblue;
+  color: white;
+}
+.main-container {
+  border: solid dodgerblue 1px;
+  width: 75%;
+  height: 1000px;
+  margin-left: 14%;
+  margin-right: 15%;
+  margin-top: 25px;
+  margin-bottom: 25px;
+}
+.movie-container {
+  width: 100%;
+  height: 400px;
+  padding: 10px;
+  position: relative;
+  text-align: center;
+}
+.movie-items-container {
+  width: 100%;
+  height: 300px;
+  overflow-y: scroll;
+}
+.movie-items-container img {
+  display: inline-block;
+  width: 100%;
+}
+.movie-tile {
+  position: relative;
+  display: inline-block;
+  width: 25%;
+  margin: 10px;
+}
+.movie-tile i,
+svg {
+  position: absolute;
+  right: 0px;
+  color: deeppink;
+}
+.button-container {
+  position: relative;
+  width: 100%;
+  height: 50px;
+}
+button {
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+.movie-container button:nth-of-type(2) {
+  position: absolute;
+  right: 0;
+  margin-right: 10px;
+}
+.movie-container button:nth-of-type(1) {
+  position: absolute;
+  left: 0;
+  margin-right: 10px;
+}
+.hide-container{
+ display: none;
+}

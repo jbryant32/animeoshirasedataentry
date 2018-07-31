@@ -1,0 +1,51 @@
+<app-navigation-bar></app-navigation-bar>
+
+<div class="main-container">
+  <div class="container-banner">
+    <h4>New Entries:</h4>
+  </div>
+  <div class="movie-container">
+    <!-- New Entrie Area Start -->
+    <div class="movie-items-container" [ngClass]='{"hide-container":postingNewEntrie}'>
+      <div *ngFor="let movie of moviesNewEntries; let i=index" class="movie-tile">
+        <i (click)="removeNewEntrie(i)" class="fas fa-times-circle"></i>
+        <img src="https://image.tmdb.org/t/p/w300{{movie['poster']}}">
+      </div>
+    </div>
+
+    <div class="button-container">
+      <button (click)="commitNewEntries()" class="btn btn-primary">Commit</button>
+      <button (click)="saveChangesNE()" class="btn btn-primary">Save Changes</button>
+    </div>
+
+    <div [ngClass]='{"hide-container":!postingNewEntrie}'>
+      <h3>Working...</h3>
+      <mat-progress-bar mode="indeterminate"></mat-progress-bar>
+
+    </div>
+  </div>
+  <!-- Area End -->
+
+  <!-- Start update entrie area - - - - -  - - - - -  - -->
+  <div class="container-banner">
+    <h4>Update Entries:</h4>
+  </div>
+  <div [ngClass]='{"hide-container":!postingUpdate}'>
+    <h3>Working...</h3>
+    <mat-progress-bar mode="indeterminate"></mat-progress-bar>
+  </div>
+  <div class="movie-container">
+    <div class="movie-items-container" [ngClass]="{'hide-container':postingUpdate!}">
+      <div *ngFor="let movie of moviesUpdateEntries; let i=index" class="movie-tile">
+        <i (click)="removeUpdateEntrie(i)" class="fas fa-times-circle"></i>
+        <img src="https://image.tmdb.org/t/p/w300{{movie['poster_sm']}}">
+      </div>
+    </div>
+    <div class="button-container">
+      <button (click)="commitUpdate()" class="btn btn-primary">Commit</button>
+      <button (click)="saveChangesUE()" class="btn btn-primary">Save Changes</button>
+    </div>
+  </div>
+
+  <!-- End -->
+</div>

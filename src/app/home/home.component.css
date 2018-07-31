@@ -92,3 +92,28 @@ input[type="search"]{
   width: 100%;
   color: #e97272;
 }
+.ratings-container {
+  height: 200px;
+  /* text-align: center; */
+  padding-left: 10%;
+  padding-right: 0%;
+}
+.ratings-container label {
+  width: 50%;
+  margin-bottom: 50px;
+}
+.sub-header{
+  padding-left: 25px;
+  padding-top: 10px;
+  width: 100%;
+  height: 50px;
+  margin: 20px;
+
+}
+.sub-header::after{
+  content: "";
+  position: absolute;
+  height: 10px;
+  width: 62%;
+  background-color: dodgerblue;
+}

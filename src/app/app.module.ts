@@ -13,14 +13,18 @@ import { NavigationBarComponent } from './navigation-bar/navigation-bar.componen
 import { CheckoutComponent } from './checkout/checkout.component';
 import { AuthGuard } from "./auth.guard";
 import { EditGuard } from "./edit.guard";
+import { ReviewComponent } from './review/review.component';
+import {MatProgressBarModule} from '@angular/material/progress-bar';
+
 
 @NgModule({
-  declarations: [AppComponent, HomeComponent, LoginComponent, EntriesComponent, EditMovieComponent, NavigationBarComponent, CheckoutComponent],
+  declarations: [AppComponent, HomeComponent, LoginComponent, EntriesComponent, EditMovieComponent, NavigationBarComponent, CheckoutComponent, ReviewComponent],
   imports: [
     BrowserModule,
     ReactiveFormsModule,
     HttpClientModule,
     FormsModule ,
+    MatProgressBarModule,
     RouterModule.forRoot([
       {
         path: "home",
@@ -50,6 +54,12 @@ import { EditGuard } from "./edit.guard";
       {
         path:"checkOut",
         component:CheckoutComponent,
+        canActivate:[AuthGuard]
+
+      },
+      {
+        path:"review",
+        component:ReviewComponent,
         canActivate:[AuthGuard]
 
       }

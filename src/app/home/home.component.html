@@ -85,12 +85,35 @@
         <span *ngIf="!userInputForm.get('theaterUrl').valid">Input Invalid</span>
       </div>
     </div>
+    <div class="sub-header"><h4>Ratings</h4></div>
+    <div class="ratings-container" formGroupName="ratingsGroup">
 
+      <label>
+        <input value="G" type="radio" formControlName="ratings">
+        <span>Rating:G</span>
+      </label>
+      <label>
+        <input value="R" type="radio" formControlName="ratings">
+        <span>Rating:R</span>
+      </label>
+      <label>
+        <input value="Pg" type="radio" formControlName="ratings">
+        <span>Rating:Pg</span>
+      </label>
+      <label>
+        <input value="Pg13" type="radio" formControlName="ratings">
+        <span>Rating:Pg-13</span>
+      </label>
+      <label>
+        <input value="NA" type="radio" formControlName="ratings">
+        <span>Rating:NA</span>
+      </label>
+    </div>
     <br>
-    <button [disabled]='!userInputForm.valid' class="btn btn-primary" type="submit">Submit</button>
-    <button [disabled]='!userInputForm.valid' (click)='saveChanges()' class="btn btn-primary">Save</button>
+    <button [disabled]='!userInputForm.valid' class="btn btn-primary" type="submit">Review</button>
+    <button [disabled]='!userInputForm.valid' (click)='saveChanges()' class="btn btn-primary" type="button">Save</button>
 
-    <button [disabled]='!userInputForm.valid' (click)='addToCart()' class="btn btn-primary">Add To Cart</button>
+    <button [disabled]='!userInputForm.valid' (click)='addToCart()' class="btn btn-primary" type="button">Add To Cart</button>
 
 
 
