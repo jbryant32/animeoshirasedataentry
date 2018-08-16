@@ -117,3 +117,7 @@ input[type="search"]{
   width: 62%;
   background-color: dodgerblue;
 }
+.selected-highlight{
+  border: dodgerblue solid thin;
+  border-spacing: 1px;
+}

@@ -47,6 +47,7 @@ export class EditMovieComponent implements OnInit {
         subbed: ["", Validators.required],
         dubbed: ["", Validators.required],
         theaterUrl: ["", Validators.required],
+        overview: ["", Validators.required],
         ratingsGroup: this.fb.group({
           ratings: ["G", Validators.required]
         })
@@ -61,7 +62,8 @@ export class EditMovieComponent implements OnInit {
         backdrop: currentEdit["backdrop_sm"],
         subbed: currentEdit["subbed"],
         dubbed: currentEdit["dubbed"],
-        theaterUrl: currentEdit["theaterUrl"]
+        theaterUrl: currentEdit["theaterUrl"],
+        overview: currentEdit["overview"]
 
         //TODO add rating populate here
       });
@@ -184,6 +186,7 @@ export class EditMovieComponent implements OnInit {
       subbed: this.editFormGroup.get("subbed").value,
       dubbed: this.editFormGroup.get("dubbed").value,
       theaterUrl: this.editFormGroup.get("theaterUrl").value,
+      overview: this.editFormGroup.get("overview").value,
       rating: this.editFormGroup.get("ratingsGroup.ratings").value
     };
   }

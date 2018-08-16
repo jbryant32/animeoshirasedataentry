@@ -12,7 +12,7 @@
   </div>
   <div class="movie-container">
     <div class="movie-selection-container">
-      <div *ngFor="let movie of movies$ | async; let i = index" (click)="selectedMovie($event,movie)" data-id="{{i}}" class="movie-tile">
+      <div  *ngFor="let movie of movies$ | async; let i = index" (click)="selectedMovie($event,movie)" data-id="{{i}}" class="movie-tile">
         {{movie.title}}
       </div>
     </div>
@@ -85,6 +85,13 @@
         <span *ngIf="!userInputForm.get('theaterUrl').valid">Input Invalid</span>
       </div>
     </div>
+    <div class="main-form-container-row">
+      <label class="form-check-label">Overview</label>
+      <input formControlName="overview" class="form-control" type="text" placeholder="Im a placeholder">
+    </div>
+    <div class="invalid-message">
+      <span *ngIf="!userInputForm.get('overview').valid">Input Invalid</span>
+    </div>
     <div class="sub-header"><h4>Ratings</h4></div>
     <div class="ratings-container" formGroupName="ratingsGroup">
 
@@ -111,7 +118,7 @@
     </div>
     <br>
     <button [disabled]='!userInputForm.valid' class="btn btn-primary" type="submit">Review</button>
-    <button [disabled]='!userInputForm.valid' (click)='saveChanges()' class="btn btn-primary" type="button">Save</button>
+    <!-- <button [disabled]='!userInputForm.valid' (click)='saveChanges()' class="btn btn-primary" type="button">Save</button> -->
 
     <button [disabled]='!userInputForm.valid' (click)='addToCart()' class="btn btn-primary" type="button">Add To Cart</button>
 
@@ -120,3 +127,5 @@
   </div>
 
 </form>
+<app-footer></app-footer>
+<!-- <app-working-screen  [hide]="hideWorking" ></app-working-screen> -->

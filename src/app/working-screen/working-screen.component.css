@@ -1,0 +1,20 @@
+.img-container {
+  width: 100%;
+}
+.main-container {
+  width: 200px;
+  height: 200px;
+  left: 50%;
+  top: 50%;
+  margin-left: -100px;
+  margin-top: -100px;
+  background-color: gray;
+
+  position: fixed;
+}
+img {
+  width: 100%;
+}
+.hide-working{
+  display: none;
+}

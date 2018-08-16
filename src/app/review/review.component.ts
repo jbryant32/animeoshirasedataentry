@@ -1,4 +1,4 @@
-import { Component, OnInit } from "@angular/core";
+import { Component, OnInit, EventEmitter } from "@angular/core";
 import { HttpClient } from "../../../node_modules/@angular/common/http";
 import { Observable } from "rxjs";
 import { RestMovie } from "../Models/rest-movie";
@@ -12,13 +12,19 @@ export class ReviewComponent implements OnInit {
   moviesUpdateEntries: Object[] = [];
   postingNewEntrie = false;
   postingUpdate = false;
+   openMovieEvent = new EventEmitter();
   constructor(private http: HttpClient) {}
 
   ngOnInit() {
-    this.moviesNewEntries = JSON.parse(localStorage["cartItemsNewEntry"]);
-    this.moviesUpdateEntries = JSON.parse(localStorage["moviesForUpdate"]);
+    this.moviesNewEntries = JSON.parse(localStorage.getItem("cartItemsNewEntry"));
+    console.log(this.moviesNewEntries);
+    this.moviesUpdateEntries = JSON.parse(localStorage.getItem("moviesForUpdate"));
     console.log(this.moviesUpdateEntries);
   }
+  fireOpenMovieInfo(movie) {
+      this.openMovieEvent.emit(movie);
+  }
+
   removeNewEntrie(index) {
     this.moviesNewEntries.splice(index, 1);
   }
@@ -56,28 +62,31 @@ export class ReviewComponent implements OnInit {
       }
     }
   }
+  //creates a movies for the backend rest point
   createRESTMovieObject(movie: Object): RestMovie {
     var REST = new RestMovie();
     REST.Title = movie["title"];
     REST.id = movie["id"];
-    REST.offeringSubbed = movie["subbed"];
-    REST.offeringDubbed = movie["dubbed"];
+    REST.offeringSubbed = movie["englishSubbed"];
+    REST.offeringDubbed = movie["englishDubbed"];
     REST.MovieDates = movie["showings"];
-    REST.theatricalReleaseStartDate = movie[movie["showings"][0]];
-    REST.youTube = movie["trailer"];
-    REST.poster_path = movie["poster_sm"];
-    REST.backdrop_path = movie["backdrop_sm"];
-    REST.overview = movie[""];
+    REST.theatricalReleaseStartDate =  movie["showings"][0];
+    REST.youTube = movie["youTubeLink"];
+    REST.poster_path = movie["poster"];
+    REST.backdrop_path = movie["backdrop"];
+    REST.overview = movie["overview"];
     REST.theaterUrl = movie["theaterUrl"];
-    REST.rating = movie["rating"];
-    REST.postedDate = movie[""];
+    REST.rating = movie["ratings"];
+    REST.postedDate = movie["postedDate"];
     REST.banner = movie["banner"] || "NA";
     return REST;
   }
   commitUpdate() {
+    console.log( this.moviesNewEntries );
     this.postingUpdate = true;
     const sampleUrl =
       "http://slowwly.robertomurray.co.uk/delay/3000/url/http://www.google.co.uk";
+
     this.http.post(sampleUrl, {}).subscribe(
       data => {
         console.log(data);
@@ -100,12 +109,13 @@ export class ReviewComponent implements OnInit {
       REST.push(this.createRESTMovieObject(movie));
     });
     console.log("movies for db");
-    console.log(this.moviesNewEntries);
-    const sampleUrl =
-      "http://slowwly.robertomurray.co.uk/delay/3000/url/http://www.google.co.uk";
-    this.http.post(sampleUrl, {}).subscribe(
+    console.log(REST);
+
+      const url = "https://animeoshirasev2.azurewebsites.net/newentry/post"
+    this.http.post(url, REST).subscribe(
       data => {
         console.log(data);
+        this.postingNewEntrie = false;
       },
       error => {
         console.log(error);
@@ -114,7 +124,7 @@ export class ReviewComponent implements OnInit {
       },
       () => {
         console.log("done");
-        this.postingNewEntrie = true;
+        this.postingNewEntrie = false;
       }
     );
   }
